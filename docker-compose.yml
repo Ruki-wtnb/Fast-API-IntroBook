@@ -1,0 +1,11 @@
+version: "3.0"
+
+services:
+  api:
+    container_name: "fastapi_app"
+    build: .
+    image: fastapi
+    restart: always
+    tty: true
+    ports:
+      - 8080:8080
