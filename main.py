@@ -14,3 +14,4 @@ def read_root():
 @app.post("/user/")
 def create_user(user: User):
     return {"res": "ok", "ID": user.user_id, "名前": user.name}
+    
