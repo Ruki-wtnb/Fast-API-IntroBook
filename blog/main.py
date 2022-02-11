@@ -5,10 +5,11 @@ from fastapi import FastAPI
 from .models import Base
 from .database import engine, get_db, sessionLocal
 from typing import List
-from .routes import blog, user
+from .routes import auth, blog, user
 
 app = FastAPI()
 
+app.include_router(auth.router)
 app.include_router(blog.router)
 app.include_router(user.router)
 
