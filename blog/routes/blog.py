@@ -1,8 +1,8 @@
 from multiprocessing import synchronize
 from fastapi import APIRouter, FastAPI, Depends, status, Response, HTTPException
-from ..schemas import Blog, ShowBlog
+from ..schemas import Blog, ShowBlog, User
 
-from .. import models
+from .. import models, oauth2
 from ..database import engine, sessionLocal, get_db
 from sqlalchemy.orm import Session
 from typing import List
@@ -16,7 +16,7 @@ router = APIRouter(
 )
 
 @router.get('/', response_model=List[ShowBlog])
-def all_fetch(db: Session=Depends(get_db)):
+def all_fetch(db: Session=Depends(get_db), current_user: User=Depends(oauth2.get_current_user)):
     return blog.get_all(db)
 
 

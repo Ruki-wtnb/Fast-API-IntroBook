@@ -1,17 +1,18 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
 
-app = FastAPI()
+import bcrypt
 
-class User(BaseModel):
-    user_id: int
-    name: str
+# at creation first:
+password = u"seCr3t"
+hashed_password = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+# first attempt:
+password = u"seCrEt"
+false_test = bcrypt.checkpw(password.encode('utf8'), hashed_password)
+# -> False
+print(false_test)
 
-@app.post("/user/")
-def create_user(user: User):
-    return {"res": "ok", "ID": user.user_id, "名前": user.name}
-    
+# second attempt:
+password = u"seCr3t"
+true_test = bcrypt.checkpw(password.encode('utf8'), hashed_password)
+# -> True
+print(true_test)
