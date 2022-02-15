@@ -32,8 +32,8 @@ def show(id: int, response: Response, db: Session=Depends(get_db)):
     return blog
 
 @router.post('/',  status_code=status.HTTP_201_CREATED)
-def create(request: Blog, db:Session=Depends(get_db)):
-    return blog.create(request, db)
+def create(request: Blog, db:Session=Depends(get_db), current_user: User = Depends(oauth2.get_current_user)):
+    return blog.create(request, db, current_user)
 
 @router.put('/{id}', status_code=status.HTTP_202_ACCEPTED)
 def update(id: int, request: Blog, db: Session=Depends(get_db)):

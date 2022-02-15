@@ -8,4 +8,4 @@ class Hash():
         return bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
     
     def verify(user_password, request_password):
-        return bcrypt.checkpw(request_password.encode('utf8'), user_password)
+        return bcrypt.checkpw(request_password.encode('utf8'), user_password.encode('utf8'))
