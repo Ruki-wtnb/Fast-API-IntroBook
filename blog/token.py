@@ -7,7 +7,7 @@ from blog.schemas import TokenData
 
 from sqlalchemy.orm import Session
 from .functions.user import show
-from database import get_db
+from .database import get_db
 
 SECRET_KET = "290e1681782b87dde6dceb07737c926bccdbb7266c0d2a93e77d50393e0d6caf"
 ALGORITHEM = "HS256"
